@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //Needed to create Image instances
 
-public class PlayerHealth : MonoBehaviour {
-
-    /// <summary>
-    /// PlayerHealth handles the life of the Player by:
-    /// -Specifing health amount and keeping track of current Health
-    /// -Getting access to the UI healthBar element and updating it base on health
-    /// -Contains methods that damage the player
-    /// -Handles when the playaer gets hurt
-    /// </summary>
-
+//-////////////////////////////////////////////////////
+///
+/// PlayerHealth handles the life of the Player by:
+/// -Specifing health amount and keeping track of current Health
+/// -Getting access to the UI healthBar element and updating it base on health
+/// -Contains methods that damage the player
+/// -Handles when the playaer gets hurt
+///
+public class PlayerHealth : MonoBehaviour 
+{
     public float maxHealth;
     public float currentHealth;
     public Image healthBar; //UI Bar
@@ -20,6 +20,8 @@ public class PlayerHealth : MonoBehaviour {
     private SpriteRenderer playerSprite;
     private CharacterController2D characterController2D;
 
+    //-////////////////////////////////////////////////////
+    ///
     void Start () {
         currentHealth = maxHealth; //At start of scene, player gets max health
         healthBar.fillAmount = currentHealth;
@@ -27,7 +29,10 @@ public class PlayerHealth : MonoBehaviour {
         characterController2D = GetComponent<CharacterController2D>();
     }
 	
-    //Deals damage to player base on specified amount and updates UI and stats
+    //-////////////////////////////////////////////////////
+    ///
+    /// Deals damage to player base on specified amount and updates UI and stats
+    ///
 	public void TakeDamage(float damage)
     {
         if (!characterController2D.m_Immune)
@@ -44,7 +49,10 @@ public class PlayerHealth : MonoBehaviour {
 
     }
 
-    //Heals Damage to the player base on specified amount and updates the UI
+    //-////////////////////////////////////////////////////
+    ///
+    /// Heals Damage to the player base on specified amount and updates the UI
+    ///
     public void HealDamage(float healAmount)
     {
         currentHealth += healAmount;
@@ -55,7 +63,10 @@ public class PlayerHealth : MonoBehaviour {
         healthBar.fillAmount = health;
     }
 
-    //ONTriggerEnter2D is called when another trigger collider hits any of the player's colliders
+    //-////////////////////////////////////////////////////
+    ///
+    /// ONTriggerEnter2D is called when another trigger collider hits any of the player's colliders
+    ///
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "HurtBox" && this.gameObject.transform.position.y - collision.gameObject.transform.position.y >= 0)
@@ -73,17 +84,23 @@ public class PlayerHealth : MonoBehaviour {
         }
     }
 
-    //Calls Take Damage, and makes Player Immune for a short interval before they can get hit again
+    //-////////////////////////////////////////////////////
+    ///
+    /// Calls Take Damage, and makes Player Immune for a short interval before they can get hit again
+    ///
     IEnumerator DamageState()
     {
         TakeDamage(1);
-        characterController2D.m_Immune = true;
+        characterController2D.SetPlayerImmune(true);
         yield return new WaitForSeconds(1f); //Time before they can get hit again
-        characterController2D.m_Immune = false;
+        characterController2D.SetPlayerImmune(false);
 
     }
 
-    //Makes the player's sprite blink
+    //-////////////////////////////////////////////////////
+    ///
+    /// Makes the player's sprite blink
+    ///
     IEnumerator BlinkSprite()
     {
         for (int i = 0; i < 8; ++i)

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
+//-////////////////////////////////////////////////////
+///
 /// HurtBox is the "weakness" area of an entity, if the player hits an enemy on such spot the enemy takes damage. This script is attached to an object
 /// with a "HurtBox tag.
-/// </summary>
-public class HurtBox : MonoBehaviour {
-
+///
+public class HurtBox : MonoBehaviour 
+{
     public GameObject mainObject;
 
-    //Gets call when a trigger collision happens on the game scene
+    //-////////////////////////////////////////////////////
+    ///
+    /// Gets call when a trigger collision happens on the game scene
+    ///
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")//if Player hits the weakspot then

@@ -1,17 +1,33 @@
 fileFormatVersion: 2
 guid: 2fb7759a81e9b84498cd9b6355fc4c47
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: YELLOWSHELL_0
-    21300002: YELLOWSHELL_1
-    21300004: YELLOWSHELL_2
-    21300006: YELLOWSHELL_3
-    21300008: SnailYellow_0
-    21300010: SnailYellow_1
-    21300012: SnailYellow_2
-    21300014: SnailYellow_3
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: YELLOWSHELL_0
+  - first:
+      213: 21300002
+    second: YELLOWSHELL_1
+  - first:
+      213: 21300004
+    second: YELLOWSHELL_2
+  - first:
+      213: 21300006
+    second: YELLOWSHELL_3
+  - first:
+      213: 21300008
+    second: SnailYellow_0
+  - first:
+      213: 21300010
+    second: SnailYellow_1
+  - first:
+      213: 21300012
+    second: SnailYellow_2
+  - first:
+      213: 21300014
+    second: SnailYellow_3
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -31,6 +47,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -65,8 +82,10 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -77,7 +96,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -88,7 +108,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -99,6 +120,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -118,6 +140,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 52c0086b5bf68d14aabc56e13e1cabac
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -138,6 +161,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 89a4452dff0f64a4496e36f279c77e8c
+      internalID: 21300010
       vertices: []
       indices: 
       edges: []
@@ -158,6 +182,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: b181762116130c942945a9e38e073174
+      internalID: 21300012
       vertices: []
       indices: 
       edges: []
@@ -178,6 +203,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7a1e5df6b4f201f48b024e0d052c635e
+      internalID: 21300014
       vertices: []
       indices: 
       edges: []
@@ -186,10 +212,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: c8120cbed07a2cd459d095c96d1c095e
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -10,6 +10,9 @@ public class cameraMover : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 pos = player.transform.position;
+        pos.z -= 15f;
+        transform.position = pos;
     }
 
     // Update is called once per frame

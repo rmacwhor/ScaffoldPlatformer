@@ -11,12 +11,6 @@ The following packages were updated:
   com.unity.package-manager-ui from version 1.9.11 to 2.0.7
   com.unity.textmeshpro from version 1.2.4 to 1.4.1
 
-<<<<<<< HEAD
-=== Wed Oct 28 20:50:52 2020
-=======
-=== Wed Oct 28 23:08:33 2020
->>>>>>> 4bcd734dac7cffa8c12340a56f46121747de751d
-
 Packages were changed.
 Update Mode: updateDependencies
 

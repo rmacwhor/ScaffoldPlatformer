@@ -33,6 +33,7 @@ public class CharacterController2D : MonoBehaviour
     public bool m_Immune { get; private set; }
     private int m_AirJumpsLeft;
     private Vector3 m_Velocity = Vector3.zero;
+    private Vector3 respawnPosition;
 
     [HideInInspector] public Rigidbody2D m_RigidBody2D;
     //private Animator animator; //If using animations
@@ -42,6 +43,8 @@ public class CharacterController2D : MonoBehaviour
     void Awake()
     {
         m_RigidBody2D = GetComponent<Rigidbody2D>();
+        respawnPosition = transform.position;
+        
         //animator = GetComponent<Animator>(); //get animator component
     }
 
@@ -122,9 +125,7 @@ public class CharacterController2D : MonoBehaviour
     void Flip()
     {
         m_FacingRight = !m_FacingRight;
-        Vector2 localScale = gameObject.transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        transform.Rotate(0, 180f, 0);
     }
 
     //-////////////////////////////////////////////////////
@@ -134,6 +135,10 @@ public class CharacterController2D : MonoBehaviour
         if (collide.gameObject.tag == "hurtbox" && this.gameObject.transform.position.y - collide.gameObject.transform.position.y >= 0)
         {
             m_RigidBody2D.velocity = new Vector2(m_RigidBody2D.velocity.x, m_JumpForceOnEnemies);
+        }
+        if (collide.gameObject.name == "BottomCollider")
+        {
+            transform.position = respawnPosition;
         }
     }
 
@@ -152,5 +157,11 @@ public class CharacterController2D : MonoBehaviour
     {
         m_Immune = isImmune;
     }
+
+    public bool IsFacingRight()
+    {
+        return m_FacingRight;
+    }
+
 
 }

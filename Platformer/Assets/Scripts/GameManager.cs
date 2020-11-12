@@ -9,7 +9,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour 
 {
     public GameObject player; //The player GameObject on the scene
-    private Transform SpawnPosition; //The location that the player will spawn
+    public Transform SpawnPosition; //The location that the player will spawn
 
     //-////////////////////////////////////////////////////
     ///

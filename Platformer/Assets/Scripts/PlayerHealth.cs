@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar; //UI Bar
     public GameManager gameManager;
     private SpriteRenderer playerSprite;
-    private CharacterController2D characterController2D;
+    public CharacterController2D characterController2D;
 
     //-////////////////////////////////////////////////////
     ///
@@ -35,14 +35,15 @@ public class PlayerHealth : MonoBehaviour
     ///
 	public void TakeDamage(float damage)
     {
-        if (!characterController2D.m_Immune)
+        if (!characterController2D.m_Immune && currentHealth > 0)
         {
-
+            
             currentHealth -= damage;
             float health = currentHealth / maxHealth;
-            healthBar.fillAmount = health;
-            if(currentHealth <= 0)      //If health goes to 0 or below, call GameOver in GameManager
+            // healthBar.fillAmount = health;
+            if (currentHealth <= 0)      //If health goes to 0 or below, call GameOver in GameManager
             {
+                Debug.Log("Game Over");
                 gameManager.GameOver();
             }
         }

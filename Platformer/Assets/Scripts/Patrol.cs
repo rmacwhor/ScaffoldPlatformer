@@ -16,15 +16,41 @@ public class Patrol : MonoBehaviour {
     [Space, Header("Agent")]
     public GameObject patrollingGameObject; //Unity GameObject that patrols
     private int nextPatrolLocation; //Keeps track of the patrol location
-	
+
+    [Space, Header("AI")]
+    private GameObject player;
+    public float maxDistance = 5f;
+    public float distance;
+    public float chaseSpeed = 1f;
+    Vector3 playerPos;
+    Vector3 patrolPos;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
+
+    }
+
     //-////////////////////////////////////////////////////
     ///
-	/// Update is called once per frame
+    /// Update is called once per frame
     ///
-	void Update () 
+    void Update () 
     {
-        PatrolArea();
-	}
+        playerPos = player.transform.position;
+        patrolPos = patrollingGameObject.transform.position;
+        distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
+        if (inRange())
+        {
+            patrolPos.x -= (Time.deltaTime * chaseSpeed * patrollingGameObject.transform.localScale.x);
+            patrollingGameObject.transform.position = patrolPos;
+        }
+        else
+        {
+            PatrolArea();
+        }
+        
+    }
 
     //-////////////////////////////////////////////////////
     ///
@@ -41,6 +67,33 @@ public class Patrol : MonoBehaviour {
         {
             nextPatrolLocation = (nextPatrolLocation + 1) % patrolLocations.Count; //Prevents IndexOutofBound by looping back through list
         }
+    }
+
+    //-////////////////////////////////////////////////////
+    /// 
+    /// tests if the player is in range
+    /// if the distance is less than the max distance, if there is a direct line of sight, if the direction is right, etc
+    /// <returns></returns>
+    private bool inRange()
+    {
+        float direction = patrollingGameObject.transform.localScale.x;
+        distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
+        if (distance > maxDistance)
+        {
+            return false;
+        }
+        if ((playerPos.x > patrolPos.x && direction == 1) || (playerPos.x < patrolPos.x && direction == -1))
+        {
+            
+            return false;
+        }
+        Vector2 dir = (Vector2)playerPos - (Vector2)patrolPos;
+        RaycastHit2D hit = Physics2D.Raycast(patrolPos, dir);
+        if (hit.collider.gameObject != player)
+        {
+            return false;
+        }
+        return true;
     }
 
     //-////////////////////////////////////////////////////

@@ -138,7 +138,7 @@ public class CharacterController2D : MonoBehaviour
         }
         if (collide.gameObject.name == "BottomCollider")
         {
-            transform.position = respawnPosition;
+            RespawnCharacter();
         }
     }
 
@@ -161,6 +161,11 @@ public class CharacterController2D : MonoBehaviour
     public bool IsFacingRight()
     {
         return m_FacingRight;
+    }
+
+    public void RespawnCharacter()
+    {
+        transform.position = respawnPosition;
     }
 
 

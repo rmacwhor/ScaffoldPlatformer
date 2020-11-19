@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage();
         }*/
         // Instantiate(impactEffect, tranform.position, transform.rotation)
-        Destroy(gameObject);    
+        if(hitInfo.name != "CameraLimit")
+            Destroy(gameObject);    
     }
 }

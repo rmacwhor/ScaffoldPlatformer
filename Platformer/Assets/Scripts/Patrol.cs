@@ -20,7 +20,7 @@ public class Patrol : MonoBehaviour {
     [Space, Header("AI")]
     private GameObject player;
     public float maxDistance = 5f;
-    public float distance;
+    private float distance;
     public float chaseSpeed = 1f;
     Vector3 playerPos;
     Vector3 patrolPos;

@@ -84,6 +84,8 @@ public class Patrol : MonoBehaviour {
     ///
     private void PatrolArea()
     {
+        Vector3 pos = transform.position;
+        float y = pos.y;
         Flip();
         patrollingGameObject.transform.position = Vector2.MoveTowards(patrollingGameObject.transform.position,
             patrolLocations[nextPatrolLocation].position, moveSpeed * Time.deltaTime);
@@ -92,6 +94,8 @@ public class Patrol : MonoBehaviour {
         {
             nextPatrolLocation = (nextPatrolLocation + 1) % patrolLocations.Count; //Prevents IndexOutofBound by looping back through list
         }
+
+        transform.position = new Vector3(pos.x, y, pos.z);
     }
 
     //-////////////////////////////////////////////////////
@@ -109,7 +113,6 @@ public class Patrol : MonoBehaviour {
         }
         if ((playerPos.x > patrolPos.x && direction == 1) || (playerPos.x < patrolPos.x && direction == -1))
         {
-            
             return false;
         }
         Vector2 dir = (Vector2)playerPos - (Vector2)patrolPos;

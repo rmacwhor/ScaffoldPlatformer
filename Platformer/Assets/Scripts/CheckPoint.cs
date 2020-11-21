@@ -19,7 +19,7 @@ public class CheckPoint : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            gameManager.UpdateSpawnPosition(gameObject.transform);
+            collision.gameObject.GetComponent<CharacterController2D>().setRespawnPoint(collision.transform.position);
         }
     }
 }

@@ -167,6 +167,10 @@ public class CharacterController2D : MonoBehaviour
     {
         transform.position = respawnPosition;
     }
+    public void setRespawnPoint(Vector3 newPos)
+    {
+        respawnPosition = newPos;
+    }
 
 
 }

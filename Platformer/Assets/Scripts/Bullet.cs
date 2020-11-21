@@ -21,14 +21,11 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage();
         }*/
         // Instantiate(impactEffect, tranform.position, transform.rotation)
-        if (hitInfo.tag == "enemy")
+        if (hitInfo.gameObject.tag == "enemy")
         {
             // call enemy's take damage
         }
-        if (hitInfo.name != "CameraLimit")
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
         
     }
 }

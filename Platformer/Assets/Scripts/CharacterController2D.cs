@@ -140,6 +140,10 @@ public class CharacterController2D : MonoBehaviour
         {
             RespawnCharacter();
         }
+        if (collide.gameObject.name == "Telepoter")
+        {
+            // call gameObject
+        }
     }
 
     //-////////////////////////////////////////////////////

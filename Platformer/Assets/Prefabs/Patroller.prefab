@@ -245,8 +245,11 @@ MonoBehaviour:
   - {fileID: 4788994893131538}
   patrollingGameObject: {fileID: 1702214341717730}
   maxDistance: 10
-  distance: 0
   chaseSpeed: 3
+  canMove: 1
+  bullet: {fileID: 0}
+  bulletVelocity: 5
+  timeBetweenShots: {x: 1, y: 2}
 --- !u!1 &1748727894468340
 GameObject:
   m_ObjectHideFlags: 0

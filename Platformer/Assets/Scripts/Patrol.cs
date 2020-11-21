@@ -24,10 +24,21 @@ public class Patrol : MonoBehaviour {
     public float chaseSpeed = 1f;
     Vector3 playerPos;
     Vector3 patrolPos;
+    public bool canMove = true;
+
+    [Space, Header("Shooting")]
+    public GameObject bullet;
+    public float bulletVelocity;
+    public Vector2 timeBetweenShots = new Vector2(1f, 2f);
+    private float currentMaxTime = 0f;
+    private float currentTime = 0f;
+    private bool canShoot = true;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
+        currentMaxTime = UnityEngine.Random.Range(timeBetweenShots.x, timeBetweenShots.y);
 
     }
 
@@ -37,17 +48,31 @@ public class Patrol : MonoBehaviour {
     ///
     void Update () 
     {
+        currentTime += Time.deltaTime;
+        if (currentTime >= currentMaxTime)
+        {
+            canShoot = true;
+            currentMaxTime = UnityEngine.Random.Range(timeBetweenShots.x, timeBetweenShots.y);
+            currentTime = 0f;
+        }
+        if (canShoot && inRange())
+        {
+            Shoot();
+        }
+
         playerPos = player.transform.position;
         patrolPos = patrollingGameObject.transform.position;
         distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
         if (inRange())
         {
             patrolPos.x -= (Time.deltaTime * chaseSpeed * patrollingGameObject.transform.localScale.x);
-            patrollingGameObject.transform.position = patrolPos;
+            if (canMove)
+                patrollingGameObject.transform.position = patrolPos;
         }
         else
         {
-            PatrolArea();
+            if (canMove)
+                PatrolArea();
         }
         
     }
@@ -74,7 +99,7 @@ public class Patrol : MonoBehaviour {
     /// tests if the player is in range
     /// if the distance is less than the max distance, if there is a direct line of sight, if the direction is right, etc
     /// <returns></returns>
-    private bool inRange()
+    public bool inRange()
     {
         float direction = patrollingGameObject.transform.localScale.x;
         distance = Vector2.Distance((Vector2)player.transform.position, (Vector2)patrollingGameObject.transform.position);
@@ -108,5 +133,24 @@ public class Patrol : MonoBehaviour {
         else
             localScale.x = -1;
         patrollingGameObject.transform.localScale = localScale;
+    }
+
+    void Shoot()
+    {
+        Vector3 target = playerPos;
+        target -= patrolPos;
+        target.z = 0f;
+
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg - 90f;
+        GameObject go = Instantiate(bullet, transform);
+        go.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        go.transform.position = patrolPos;
+        Vector3 localUp = go.transform.up;
+        go.GetComponent<Rigidbody2D>().velocity = localUp * bulletVelocity;
+        Destroy(go, 10f);
+
+        //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        canShoot = false;
     }
 }

@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
         {
             
             currentHealth -= damage;
+            healthBar.fillAmount = (float)currentHealth / maxHealth;
             float health = currentHealth / maxHealth;
             // healthBar.fillAmount = health;
             if (currentHealth <= 0)      //If health goes to 0 or below, call GameOver in GameManager

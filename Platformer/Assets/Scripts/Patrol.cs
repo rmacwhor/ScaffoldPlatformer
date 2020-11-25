@@ -24,7 +24,8 @@ public class Patrol : MonoBehaviour {
     public float chaseSpeed = 1f;
     Vector3 playerPos;
     Vector3 patrolPos;
-    public bool canMove = true;
+    
+    public float health = 2f;
 
     [Space, Header("Shooting")]
     public GameObject bullet;
@@ -33,6 +34,10 @@ public class Patrol : MonoBehaviour {
     private float currentMaxTime = 0f;
     private float currentTime = 0f;
     private bool canShoot = true;
+
+    [Space, Header("Debug")]
+    public bool canShootDebug = true;
+    public bool canMove = true;
 
     private void Start()
     {
@@ -57,8 +62,9 @@ public class Patrol : MonoBehaviour {
         }
         if (canShoot && inRange())
         {
-            Shoot();
-        }
+            if (canShootDebug)
+                Shoot();
+        }   
 
         playerPos = player.transform.position;
         patrolPos = patrollingGameObject.transform.position;
@@ -155,5 +161,14 @@ public class Patrol : MonoBehaviour {
         //transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         canShoot = false;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

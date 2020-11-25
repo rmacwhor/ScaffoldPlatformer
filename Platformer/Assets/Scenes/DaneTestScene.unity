@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnailEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1560732185758450, guid: e5a255ed8cce0e548b8f77659399cf4e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560732185758450, guid: e5a255ed8cce0e548b8f77659399cf4e, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4577981022837350, guid: e5a255ed8cce0e548b8f77659399cf4e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5859175

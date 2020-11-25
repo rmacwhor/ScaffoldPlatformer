@@ -9,7 +9,8 @@ public class enemyBullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //make player take damage
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            print("taking damage");
         }
 
         if (collision.transform.root.gameObject.tag != "enemy")

@@ -27,6 +27,7 @@ public class CharacterController2D : MonoBehaviour
     private bool m_AirControl = false;
     [SerializeField]
     private float m_JumpForceOnEnemies = 20;
+    public float m_JumpForceOnJumpPad = 30;
     private bool m_Grounded;
     private bool m_FacingRight = true;
     private bool m_Damaged;
@@ -143,6 +144,10 @@ public class CharacterController2D : MonoBehaviour
         if (collide.gameObject.name == "Telepoter")
         {
             // call gameObject
+        }
+        if (collide.gameObject.tag == "JumpPad")
+        {
+            m_RigidBody2D.velocity = new Vector2(m_RigidBody2D.velocity.x, m_JumpForceOnJumpPad);
         }
     }
 

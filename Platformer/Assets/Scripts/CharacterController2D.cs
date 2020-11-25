@@ -174,6 +174,8 @@ public class CharacterController2D : MonoBehaviour
 
     public void RespawnCharacter()
     {
+        PlayerHealth ph = gameObject.GetComponent<PlayerHealth>();
+        ph.HealDamage(ph.maxHealth);
         transform.position = respawnPosition;
     }
     public void setRespawnPoint(Vector3 newPos)

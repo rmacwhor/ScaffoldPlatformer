@@ -5,8 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
-    public int damage = 40;
+    public int damage = 1;
     public Rigidbody2D rb;
+    private int shots = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,15 +16,12 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        /*Enemy enemy = hitInfo.GetComponent<Enemy>();
-        if(enemy != null)
+        GameObject hit = hitInfo.transform.root.gameObject;
+        if (hit.tag == "enemy" && hit.GetComponent<Patrol>() != null && hitInfo.gameObject.name.StartsWith("rocket") == false)
         {
-            enemy.TakeDamage();
-        }*/
-        // Instantiate(impactEffect, tranform.position, transform.rotation)
-        if (hitInfo.gameObject.tag == "enemy")
-        {
-            // call enemy's take damage
+            if (shots == 0)
+                hit.GetComponent<Patrol>().TakeDamage(damage);
+            shots += 1;
         }
         Destroy(gameObject);
         
